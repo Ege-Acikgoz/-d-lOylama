@@ -1,0 +1,12 @@
+# .env dosyasını git tarafından izlenmesinden çıkarır
+.env
+
+# Node.js modülleri
+node_modules/
+
+# Çıkış dosyaları
+dist/
+
+# IDE ve editör yapılandırmaları
+.vscode/
+.idea/
