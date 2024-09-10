@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonuçlar</title>
+    <style>
+        body {
+            background-image: url('b.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #results {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .thank-you-message {
+            color: white;
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Oylama Sonuçları</h1>
+    <div id="results">
+        <h2>Oyuncular ve Puanlar</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Oyuncu Adı</th>
+                    <th>Puan</th>
+                </tr>
+            </thead>
+            <tbody id="results-body">
+                <!-- Sonuçlar buraya eklenecek -->
+            </tbody>
+        </table>
+        <!-- Ana sayfaya dönüş butonu kaldırıldı -->
+        <div class="thank-you-message">Oylarınız için teşekkür ederiz.</div>
+    </div>
+
+    <script>
+        // Sonuçları almak ve tabloya eklemek için JavaScript kodu
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultsBody = document.getElementById('results-body');
+            const votingData = JSON.parse(localStorage.getItem('votingData'));
+
+            if (votingData) {
+                votingData.scores.forEach(score => {
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    const scoreCell = document.createElement('td');
+
+                    nameCell.textContent = score.name;
+                    scoreCell.textContent = score.score;
+
+                    row.appendChild(nameCell);
+                    row.appendChild(scoreCell);
+                    resultsBody.appendChild(row);
+                });
+
+                // Veriyi temizle
+                localStorage.removeItem('votingData');
+            } else {
+                resultsBody.innerHTML = '<tr><td colspan="2">Henüz oy kullanılmadı.</td></tr>';
+            }
+        });
+    </script>
+</body>
+</html>
