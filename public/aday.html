@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballon D'or Adayları</title>
+    <style>
+       
+       body {
+            background-image: url('b.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* Her satırda 6 kutucuk olacak şekilde */
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .photo-container {
+            width: 190px; /* Kutunun genişliği */
+            height: 200px; /* Kutunun yüksekliği */
+            overflow: hidden; /* Fotoğrafın kutunun dışına taşmasını engeller */
+            position: relative;
+            border: 2px solid #000; /* Kutunun sınırlarını belirler */
+            border-radius: 8px; /* Köşeleri yuvarlar */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* İç gölge efekti */
+            background-color: rgba(255, 255, 255, 0.8); /* Arka plan rengi */
+            text-align: center; /* İçerikleri ortalar */
+            padding: 10px; /* İçeriklere biraz boşluk ekler */
+            cursor: pointer; /* İşaretçi işareti el şeklinde değişir */
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fotoğrafın kutunun dışına taşmasını engeller ve kutunun tamamını kaplamasını sağlar */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .photo-container h3 {
+            margin: 0;
+            padding-top: 10px;
+            color: #000;
+            font-size: 14px;
+        }
+
+        #voting-section {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+        }
+
+        #results {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+        }
+
+        .button {
+            background-color: #FFD700; /* Sarı renk */
+            border: none;
+            color: #000;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        #selected-players {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            text-align: center;
+        }
+
+        #selected-players ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #selected-players li {
+            padding: 5px 0;
+        }
+
+        .selected {
+            border: 3px solid #FFD700; /* Sarı renkli seçili kenarlık */
+        }
+           
+    </style>
+</head>
+<body>
+    <h1>Ballon D'or Adayları</h1>
+    <div id="container">
+        <!-- 30 tane kutucuk oluşturuldu -->
+        <!-- 1. Satır -->
+        <div class="photo-container" data-player="Florian Wirtz" data-name="Florian Wirtz">
+            <img src="images/wirtz.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Vitinha" data-name="Vitinha">
+            <img src="images/vitinha.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 2</h3>
+        </div>
+        <div class="photo-container"data-player="Hakan Çalhanoğlu" data-name="Hakan Çalhanoğlu">
+            <img src="images/hakan.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Lutaro Martinez" data-name="Lutaro Martinez">
+            <img src="images/lautaro.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container"data-player="Antonio Rüdiger" data-name="Antonio Rüdiger">
+            <img src="images/rudiger.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div><div class="photo-container" data-player="Ademola Lookman" data-name="Ademola Lookman">
+            <img src="images/lookman.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <!-- 2. Satır -->
+        <div class="photo-container" data-player="Harry Kane" data-name="Harry Kane">
+            <img src="images/kane.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Mats Hummels" data-name="Mats Hummels">
+            <img src="images/hummels.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 2</h3>
+        </div>
+        <div class="photo-container" data-player="Kylian Mbappe" data-name="Kylian Mbappe">
+            <img src="images/mbappe.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Rodri" data-name="Rodri">
+            <img src="images/rodri.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="William Saliba" data-name="William Saliba">
+            <img src="images/saliba.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div><div class="photo-container" data-player="Emiliano Martínez" data-name="Emiliano Martínez">
+            <img src="images/martinez.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        
+        <!-- 3. Satır -->
+        <div class="photo-container" data-player="Lamine Yamal" data-name="Lamine Yamal">
+            <img src="images/lamal.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Bukayo Saka" data-name="Bukayo Saka">
+            <img src="images/saka.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 2</h3>
+        </div>
+        <div class="photo-container" data-player="Daniel Carvajal" data-name="Daniel Carvajal">
+            <img src="images/carvajal.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container"data-player="Cole Palmer" data-name="Cole Palmer">
+            <img src="images/palmer.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Declan Rice" data-name="Declan Rice">
+            <img src="images/rice.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div><div class="photo-container"data-player="Jude Bellingham" data-name="Jude Bellingham">
+            <img src="images/bellingham.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <!-- 4. Satır -->
+        <div class="photo-container" data-player="Alejandro Grimaldo" data-name="Alejandro Grimaldo">
+            <img src="images/grimaldo.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Martin Odegaard" data-name="Martin Odegaard">
+            <img src="images/odegard.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 2</h3>
+        </div>
+        <div class="photo-container" data-player="Vinicius Jr." data-name="Vinicius Jr."> 
+            <img src="images/vini.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Dani Olmo" data-name="Dani Olmo">
+            <img src="images/olmo.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Nico Williams" data-name="Nico Williams">
+            <img src="images/nico.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div><div class="photo-container"data-player="Phil Foden" data-name="Phil Foden">
+            <img src="images/foden.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <!-- 5. Satır -->
+        <div class="photo-container"data-player="Granit Xhaka" data-name="Granit Xhaka">
+            <img src="images/xhaka.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Artem Dovbik" data-name="Artem Dovbik">
+            <img src="images/dovbik.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 2</h3>
+        </div>
+        <div class="photo-container" data-player="Ruben Dias" data-name="Ruben Dias">
+            <img src="images/dias.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="federico Valverde" data-name="Federico Valverde">
+            <img src="images/valverde.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+        <div class="photo-container" data-player="Erling Haaland" data-name="Erling Haaland">
+            <img src="images/haaland.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div><div class="photo-container" data-player="Toni Kroos" data-name="Toni Kroos">
+            <img src="images/kroos.jpeg" alt="Fotoğraf">
+            <h3>Oyuncu 1</h3>
+        </div>
+    </div>
+    <div id="voting-section">
+        <h2>Oylama Yapın</h2>
+        <form id="voting-form">
+            <label for="name">Ad Soyad:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit" class="button">Oy Ver</button>
+        </form>
+    </div>
+
+    <div id="selected-players">
+        <h2>Seçilen Oyuncular</h2>
+        <ul id="selected-list">
+            <!-- Seçilen oyuncular buraya eklenecek -->
+        </ul>
+    </div>
+
+    <script>
+        const photoContainers = document.querySelectorAll('.photo-container');
+        const selectedList = document.getElementById('selected-list');
+        let selectedPlayers = [];
+        const points = [10, 7, 5, 3, 1]; // Puanlar: 1. en yüksekten 5. en düşük puan
+
+        photoContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                const playerId = container.getAttribute('data-player');
+                const playerName = container.getAttribute('data-name');
+
+                // Fotoğrafın seçili olup olmadığını kontrol et
+                if (selectedPlayers.find(player => player.id === playerId)) {
+                    // Seçiliyse kaldır
+                    selectedPlayers = selectedPlayers.filter(player => player.id !== playerId);
+                    container.classList.remove('selected');
+                } else {
+                    // Seçili değilse ekle
+                    if (selectedPlayers.length < 5) {
+                        selectedPlayers.push({ id: playerId, name: playerName });
+                        container.classList.add('selected');
+                    } else {
+                        alert('Sadece 5 oyuncu seçebilirsiniz.');
+                    }
+                }
+                
+                // Seçilen oyuncuları listele
+                updateSelectedList();
+            });
+        });
+
+        function updateSelectedList() {
+            selectedList.innerHTML = '';
+            selectedPlayers.forEach((player, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${player.name} - ${points[index]} puan`;
+                selectedList.appendChild(listItem);
+            });
+        }
+
+        document.getElementById('voting-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (selectedPlayers.length !== 5) {
+                alert('Lütfen 5 oyuncu seçin.');
+            } else {
+                // Oy verildiğinde sonucu gönder
+                const playerScores = selectedPlayers.map((player, index) => ({
+                    name: player.name,
+                    score: points[index]
+                }));
+
+                const name = document.getElementById('name').value;
+
+                localStorage.setItem('votingData', JSON.stringify({
+                    name,
+                    scores: playerScores
+                }));
+
+                window.location.href = 'sonuc.html';
+            }
+        });
+        
+    </script>
+</body>
+</html>

@@ -11,12 +11,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Bağlantısı
-const dbURL = process.env.MONGODB_URI || 'mongodb+srv://sefaege:ZS81WflmN3Z8DLgW@odul.dvbrf.mongodb.net/?retryWrites=true&w=majority&appName=odul'; // Çevre değişkeninden veya yerel bağlantı adresinden URL alır
+const dbURL = process.env.MONGODB_URI || 'mongodb+srv://sefaege:ZS81WflmN3Z8DLgW@odul.dvbrf.mongodb.net/?retryWrites=true&w=majority&appName=odul';
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB bağlantısı başarılı'))
   .catch(err => console.error('MongoDB bağlantı hatası:', err));
 
-// Örnek Model (Schema) Tanımı
+// Oy Modeli Tanımı
 const OySchema = new mongoose.Schema({
   adSoyad: { type: String, required: true },
   oylar: { type: [String], required: true }
@@ -38,7 +38,8 @@ app.post('/oy-kullan', async (req, res) => {
     await yeniOy.save();
     res.json({ message: 'Oy başarıyla kaydedildi' });
   } catch (error) {
-    res.status(500).json({ error: 'Bir hata oluştu' });
+    console.error('Oy kaydedilirken hata:', error);
+    res.status(500).json({ error: 'Bir hata oluştu', details: error.message });
   }
 });
 
@@ -48,7 +49,8 @@ app.get('/oylar', async (req, res) => {
     const oylar = await Oy.find();
     res.json(oylar);
   } catch (error) {
-    res.status(500).json({ error: 'Bir hata oluştu' });
+    console.error('Oylar getirilirken hata:', error);
+    res.status(500).json({ error: 'Bir hata oluştu', details: error.message });
   }
 });
 
@@ -63,5 +65,3 @@ app.get('/', (req, res) => {
 // Sunucu Başlatma
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server ${PORT} portunda çalışıyor`));
-
-
